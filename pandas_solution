@@ -1,1 +1,8 @@
-import sql
+#considering each table as each dataframe
+
+import sqlite3
+import pandas as pd
+connection_object = sqlite3.connect("databasename.db")
+  cur_object = connection_object.cursor()
+  result =   cur_object.execute(" SQL Query")
+  connection-object.close()
