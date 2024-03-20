@@ -1,0 +1,5 @@
+select a.customer_id,a.age,c.item_id,round(sum(c.quantity),0) as total_quantities from customer a left join sales b on a.customer_id = b.customer_id
+left join orders c on b.sales_id = c.sales_id
+where b.age between 18 and 35 and c.quantity not in ('0',NULL)
+  group by a.customer_id,a.age,c.item_id
+;
