@@ -1,0 +1,7 @@
+import sqlite3
+
+connection_object = sqlite3.connect("databasename.db")
+  cur_object = connection_object.cursor()
+  result =   cur_object.execute(" SQL Query")
+  connection-object.close()
+
