@@ -1,8 +1,14 @@
 #considering each table as each dataframe
 
-import sqlite3
+
 import pandas as pd
-connection_object = sqlite3.connect("databasename.db")
-  cur_object = connection_object.cursor()
-  result =   cur_object.execute(" SQL Query")
-  connection-object.close()
+
+df1 = df_customer.merge(df_sales,left_index=True, right_index=True,how ='left').merge(df_orders,left_index=True, right_index=True,how ='left')
+df2 = df1[['customer_id','age','item_id','quantity']]
+df3 = df2.dropna(subset=['quantity'], inplace=True)
+df4 =  df3.loc[(df3!=0).any(axis=1)]
+df5 = df4.groupby(['customer_id','age','item_id'])['quantity'].sum().reset_index()
+df6 = df5.round(0)
+df6.to_csv('output.csv',sep = ';')
+
+
